@@ -1,6 +1,7 @@
 package com.project.VacationManagerProject;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users_table")
@@ -70,5 +71,30 @@ public class Users {
 
     public void setTeam(String team) {
         this.team = team;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return Objects.equals(id, users.id) && Objects.equals(username, users.username) && Objects.equals(password, users.password) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(role, users.role) && Objects.equals(team, users.team);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, firstName, lastName, role, team);
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", role='" + role + '\'' +
+                ", team='" + team + '\'' +
+                '}';
     }
 }
