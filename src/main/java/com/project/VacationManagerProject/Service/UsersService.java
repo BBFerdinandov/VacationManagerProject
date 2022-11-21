@@ -14,18 +14,18 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    public Users registerUser(String login, String password, String firstName) {
+    public Users registerUser(String login, String password, String username) {
         if(login!=null && password!=null) {
             return null;
         } else {
             Users users = new Users();
             users.setLogin(login);
-            users.setFirstName(firstName);
+            users.setUsername(username);
             users.setPassword(password);
             return usersRepository.save(users);
         }
     }
-    public Users authenticate(String login, String firstName, String password) {
+    public Users authenticate(String login, String password) {
         return usersRepository.findByLoginAndPassword(login, password).orElse(null);
     }
 }
